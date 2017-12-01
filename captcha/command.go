@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"github.com/google/subcommands"
+	"time"
 )
 
 type command struct {
@@ -28,13 +29,22 @@ func (c *command) SetFlags(flags *flag.FlagSet) {
 }
 
 func (c *command) Execute(ctx context.Context, f *flag.FlagSet, args ...interface{}) subcommands.ExitStatus {
+	start := time.Now()
+
 	input := readInput(c.file)
+	atInput := time.Now()
 
 	// Part 1:
-	fmt.Println("[1] Captcha result:", calculateSum(input, 1))
+	sum1 := calculateSum(input, 1)
+	atPart1 := time.Now()
 
 	// Part 2:
-	fmt.Println("[2] Captcha result:", calculateSum(input, len(input)/2))
+	sum2 := calculateSum(input, len(input)/2)
+	atPart2 := time.Now()
+
+	fmt.Printf("Captchas generated (input parsed in %dµs).\n", atInput.Sub(start).Nanoseconds() / 1000)
+	fmt.Printf("Part 1: %d (generated in %dµs)\n", sum1, atPart1.Sub(atInput).Nanoseconds() / 1000)
+	fmt.Printf("Part 2: %d (generated in %dµs)\n", sum2, atPart2.Sub(atPart1).Nanoseconds() / 1000)
 
 	return subcommands.ExitSuccess
 }
