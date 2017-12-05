@@ -5,6 +5,7 @@ import (
 	"flag"
 	"github.com/google/subcommands"
 	"github.com/rjelierse/adventofcode-2017/captcha"
+	"github.com/rjelierse/adventofcode-2017/checksum"
 	"os"
 )
 
@@ -15,6 +16,7 @@ func main() {
 	subcommands.Register(subcommands.HelpCommand(), "")
 
 	subcommands.Register(captcha.Command(), "Advent of Code 2017")
+	subcommands.Register(checksum.Command(), "Advent of Code 2017")
 
 	flag.Parse()
 	ctx := context.Background()
