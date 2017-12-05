@@ -4,11 +4,11 @@ import (
 	"context"
 	"flag"
 	"github.com/google/subcommands"
-	"github.com/rjelierse/adventofcode-2017/captcha"
-	"github.com/rjelierse/adventofcode-2017/checksum"
-	"github.com/rjelierse/adventofcode-2017/passphrase"
-	"github.com/rjelierse/adventofcode-2017/spiral"
-	"github.com/rjelierse/adventofcode-2017/trampoline"
+	"github.com/rjelierse/adventofcode-2017/01"
+	"github.com/rjelierse/adventofcode-2017/02"
+	"github.com/rjelierse/adventofcode-2017/03"
+	"github.com/rjelierse/adventofcode-2017/04"
+	"github.com/rjelierse/adventofcode-2017/05"
 	"os"
 )
 
