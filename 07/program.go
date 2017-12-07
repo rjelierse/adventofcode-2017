@@ -7,31 +7,66 @@ type Program struct {
 	SelfWeight    int
 	Children      []string
 	Parent        *Program
-	ChildPrograms []*Program
+	ChildPrograms ProgramSlice
+}
+
+type ProgramSlice []*Program
+type WeightsMap map[int]ProgramSlice
+
+type WeightError struct {
+	Program    *Program
+	Difference int
 }
 
 // AddChild sets the references to the parent and child program on both nodes
-func (p *Program) AddChild(c *Program) {
-	p.ChildPrograms = append(p.ChildPrograms, c)
+func (program *Program) AddChild(child *Program) {
+	program.ChildPrograms = append(program.ChildPrograms, child)
 
-	c.Parent = p
+	child.Parent = program
 }
 
-func (p *Program) Weight() int {
-	if len(p.ChildPrograms) == 0 {
-		return p.SelfWeight
+func (program *Program) Weight() (weight int, err error) {
+	weight = program.SelfWeight
+
+	if len(program.ChildPrograms) == 0 {
+		return weight, nil
 	}
 
-	weight := 0
-	weights := make(map[string]int)
+	weights := make(WeightsMap)
 
-	for _, c := range p.ChildPrograms {
-		w := c.Weight()
-		weights[c.Name] = w
-		weight = weight + w
+	for _, child := range program.ChildPrograms {
+		var weight2 int
+		weight2, err = child.Weight()
+		if err != nil {
+			return 0, err
+		}
+
+		weights[weight2] = append(weights[weight2], child)
+		weight = weight + weight2
 	}
 
-	fmt.Printf("%s weighs %d (%v)\n", p.Name, p.SelfWeight, weights)
+	var imbalance *Program
+	var normal, outlier int
+	for w, programs := range weights {
+		if len(programs) == 1 {
+			outlier = w
+			imbalance = programs[0]
+		} else if len(programs) != len(program.ChildPrograms) {
+			normal = w
+		}
+	}
 
-	return p.SelfWeight + weight
+	if imbalance != nil {
+		err = WeightError{Program:imbalance, Difference: outlier - normal}
+	}
+
+	return weight, err
+}
+
+func (err WeightError) Error() string {
+	return fmt.Sprintf("weight anomaly detected, correct weight %d", err.CorrectWeight())
+}
+
+func (err WeightError) CorrectWeight() int {
+	return err.Program.SelfWeight - err.Difference
 }

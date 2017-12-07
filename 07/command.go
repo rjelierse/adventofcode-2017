@@ -38,7 +38,10 @@ func (c *command) Execute(ctx context.Context, f *flag.FlagSet, args ...interfac
 	node := BuildTree(lines)
 	fmt.Printf("Root: %s\n", node.Name)
 
-	node.Weight()
+	_, err = node.Weight()
+	if err != nil {
+		fmt.Printf("Imbalanced node: %v\n", err)
+	}
 
 	return subcommands.ExitSuccess
 }
