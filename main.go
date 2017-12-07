@@ -11,6 +11,7 @@ import (
 	"github.com/rjelierse/adventofcode-2017/05"
 	"os"
 	"github.com/rjelierse/adventofcode-2017/06"
+	"github.com/rjelierse/adventofcode-2017/07"
 )
 
 func main() {
@@ -25,6 +26,7 @@ func main() {
 	subcommands.Register(passphrase.Command(), "Advent of Code 2017")
 	subcommands.Register(trampoline.Command(), "Advent of Code 2017")
 	subcommands.Register(banks.Command(), "Advent of Code 2017")
+	subcommands.Register(tower.Command(), "Advent of Code 2017")
 
 	flag.Parse()
 	ctx := context.Background()
