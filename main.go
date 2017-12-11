@@ -9,10 +9,11 @@ import (
 	"github.com/rjelierse/adventofcode-2017/03"
 	"github.com/rjelierse/adventofcode-2017/04"
 	"github.com/rjelierse/adventofcode-2017/05"
-	"os"
 	"github.com/rjelierse/adventofcode-2017/06"
 	"github.com/rjelierse/adventofcode-2017/07"
 	"github.com/rjelierse/adventofcode-2017/08"
+	"github.com/rjelierse/adventofcode-2017/09"
+	"os"
 )
 
 func main() {
@@ -29,6 +30,7 @@ func main() {
 	subcommands.Register(banks.Command(), "Advent of Code 2017")
 	subcommands.Register(tower.Command(), "Advent of Code 2017")
 	subcommands.Register(registers.Command(), "Advent of Code 2017")
+	subcommands.Register(garbage.Command(), "Advent of Code 2017")
 
 	flag.Parse()
 	ctx := context.Background()
