@@ -23,7 +23,8 @@ func NewGrid(key string) *Grid {
 	g := new(Grid)
 
 	for i := 0; i < gridSize; i++ {
-		lengths := KeyToLengths(key, i)
+		input := fmt.Sprintf("%s-%d", key, i)
+		lengths := knot.Length([]byte(input))
 		for j, bits := range knot.Hash(lengths) {
 			upper := bits / divider
 			lower := bits % divider
@@ -92,15 +93,6 @@ func (g *Grid) fill(i int, j int) {
 	if j < gridSize-1 {
 		g.fill(i, j+1)
 	}
-}
-
-func KeyToLengths(key string, row int) []int {
-	input := fmt.Sprintf("%s-%d", key, row)
-	lengths := make([]int, len(input))
-	for i, b := range input {
-		lengths[i] = int(b)
-	}
-	return lengths
 }
 
 func isSquareUsed(value int, bit uint, bits uint) int {

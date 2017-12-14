@@ -10,6 +10,15 @@ type Knot struct {
 const cipherLength = 256
 const hashingRounds = 64
 
+func Length(input []byte) []int {
+	lengths := make([]int, len(input))
+	for i, value := range input {
+		lengths[i] = int(value)
+	}
+
+	return lengths
+}
+
 func Hash(lengths []int) []int {
 	lengths = append(lengths, 17, 31, 73, 47, 23)
 	k := NewKnot(cipherLength)

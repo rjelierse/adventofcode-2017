@@ -51,15 +51,9 @@ func (c *command) getLengths() ([]int, error) {
 	if err != nil {
 		return nil, err
 	}
-
 	input = bytes.TrimSpace(input)
 
-	lengths := make([]int, len(input))
-	for i, value := range input {
-		lengths[i] = int(value)
-	}
-
-	return lengths, nil
+	return Length(input), nil
 }
 
 func Command() subcommands.Command {
