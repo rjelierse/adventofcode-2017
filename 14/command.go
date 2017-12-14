@@ -30,6 +30,7 @@ func (c *command) SetFlags(f *flag.FlagSet) {
 func (c *command) Execute(ctx context.Context, f *flag.FlagSet, args ...interface{}) subcommands.ExitStatus {
 	g := NewGrid(c.key)
 	fmt.Println("Cells in use", g.Count())
+	fmt.Println("Clusters", g.GroupCount())
 	return subcommands.ExitSuccess
 }
 

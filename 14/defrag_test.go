@@ -2,14 +2,23 @@ package defrag
 
 import "testing"
 
-func TestGrid(t *testing.T) {
-	key := "flqrgnkx"
+func TestGrid_Count(t *testing.T) {
 	count := 8108
-	g := NewGrid(key)
+	g := NewGrid("flqrgnkx")
 	result := g.Count()
 
 	if result != count {
-		t.Error("For key", key, "expected", count, "set bits, got", result)
+		t.Error("Expected", count, "set squares, got", result)
+	}
+}
+
+func TestGrid_GroupCount(t *testing.T) {
+	count := 1242
+	g := NewGrid("flqrgnkx")
+	result := g.GroupCount()
+
+	if result != count {
+		t.Error("Expected", count, "groups of squares, got", result)
 	}
 }
 

@@ -12,6 +12,7 @@ const divider = 16
 const (
 	squareFree = iota
 	squareUsed
+	squareVisited
 )
 
 type Grid struct {
@@ -52,6 +53,45 @@ func (g *Grid) Count() int {
 	}
 
 	return count
+}
+
+func (g *Grid) GroupCount() int {
+	groups := 0
+
+	for i := 0; i < gridSize; i++ {
+		for j := 0; j < gridSize; j++ {
+			if g.bits[i][j] == squareUsed {
+				groups++
+				g.fill(i, j)
+			}
+		}
+	}
+
+	return groups
+}
+
+func (g *Grid) fill(i int, j int) {
+	if g.bits[i][j] != squareUsed {
+		return
+	}
+
+	g.bits[i][j] = squareVisited
+
+	if i > 0 {
+		g.fill(i-1, j)
+	}
+
+	if j > 0 {
+		g.fill(i, j-1)
+	}
+
+	if i < gridSize-1 {
+		g.fill(i+1, j)
+	}
+
+	if j < gridSize-1 {
+		g.fill(i, j+1)
+	}
 }
 
 func KeyToLengths(key string, row int) []int {
