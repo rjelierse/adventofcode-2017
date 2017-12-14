@@ -37,12 +37,7 @@ func (c *command) Execute(ctx context.Context, f *flag.FlagSet, args ...interfac
 		return subcommands.ExitFailure
 	}
 
-	k := NewKnot(256)
-	for r := 0; r < 64; r++ {
-		k.Round(lengths)
-	}
-
-	for _, v := range k.DenseHash() {
+	for _, v := range Hash(lengths) {
 		fmt.Fprintf(os.Stdout, "%02x", v)
 	}
 
@@ -63,8 +58,6 @@ func (c *command) getLengths() ([]int, error) {
 	for i, value := range input {
 		lengths[i] = int(value)
 	}
-
-	lengths = append(lengths, 17, 31, 73, 47, 23)
 
 	return lengths, nil
 }

@@ -7,6 +7,18 @@ type Knot struct {
 	skip            int
 }
 
+const cipherLength = 256
+const hashingRounds = 64
+
+func Hash(lengths []int) []int {
+	lengths = append(lengths, 17, 31, 73, 47, 23)
+	k := NewKnot(cipherLength)
+	for r := 0; r < hashingRounds; r++ {
+		k.Round(lengths)
+	}
+	return k.DenseHash()
+}
+
 func NewKnot(length int) *Knot {
 	k := new(Knot)
 	k.length = length
