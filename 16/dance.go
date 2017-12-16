@@ -19,19 +19,9 @@ func NewDancefloor(positions int) *Dancefloor {
 	return d
 }
 
-func (d *Dancefloor) Dance(instructions []string) {
+func (d *Dancefloor) Dance(instructions []Instruction) {
 	for _, instruction := range instructions {
-		switch GetInstruction(instruction) {
-		case InstructionSpin:
-			count := ParseSpinInstruction(instruction)
-			d.Spin(count)
-		case InstructionExchange:
-			a, b := ParseExchangeInstruction(instruction)
-			d.Exchange(a, b)
-		case InstructionPartner:
-			a, b := ParsePartnerInstruction(instruction)
-			d.Partner(a, b)
-		}
+		instruction.Apply(d)
 	}
 
 	d.history = append(d.history, string(d.Positions))

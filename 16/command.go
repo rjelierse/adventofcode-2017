@@ -35,17 +35,23 @@ func (c *command) Execute(ctx context.Context, f *flag.FlagSet, args ...interfac
 	data, err := ioutil.ReadFile(c.path)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "Cannot parse input", err)
+		return subcommands.ExitFailure
 	}
 
-	instructions := SplitInstructions(string(data))
+	instructions, err := ParseInstructions(string(data))
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "Cannot parse input", err)
+		return subcommands.ExitFailure
+	}
+
 	floor := NewDancefloor(16)
 
 	for i := 0; i < c.rounds; i++ {
 		floor.Dance(instructions)
 		if iter := floor.IsRepeat(); iter > -1 && iter != i {
 			round := (c.rounds % i) - 1
-			fmt.Printf("Round %d is a repeat of round %d: %s\n", i + 1, iter + 1, floor.history[iter])
-			fmt.Printf("Round %d is a repeat of round %d: %s\n", c.rounds, round + 1, floor.history[round])
+			fmt.Printf("Round %d is a repeat of round %d: %s\n", i+1, iter+1, floor.history[iter])
+			fmt.Printf("Round %d is a repeat of round %d: %s\n", c.rounds, round+1, floor.history[round])
 			return subcommands.ExitSuccess
 		}
 	}

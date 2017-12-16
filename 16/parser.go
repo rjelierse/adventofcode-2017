@@ -2,40 +2,29 @@ package dance
 
 import (
 	"strings"
-	"fmt"
-	"log"
 )
 
-const (
-	InstructionSpin = 's'
-	InstructionExchange = 'x'
-	InstructionPartner = 'p'
-)
+func ParseInstructions(input string) (instructions []Instruction, err error) {
+	inputs := splitInstructions(input)
+	instructions = make([]Instruction, len(inputs))
 
-func SplitInstructions(input string) []string {
+	for i, instruction := range inputs {
+		switch instruction[0] {
+		case 's':
+			instructions[i], err = ParseSpinInstruction(instruction)
+		case 'x':
+			instructions[i], err = ParseExchangeInstruction(instruction)
+		case 'p':
+			instructions[i] = ParsePartnerInstruction(instruction)
+		}
+		if err != nil {
+			return nil, err
+		}
+	}
+
+	return instructions, nil
+}
+
+func splitInstructions(input string) []string {
 	return strings.Split(strings.TrimSpace(input), ",")
-}
-
-func GetInstruction(input string) byte {
-	return input[0]
-}
-
-func ParseSpinInstruction(instruction string) (count int) {
-	if _, err := fmt.Sscanf(instruction, "s%d", &count); err != nil {
-		log.Fatal(err)
-	}
-	return
-}
-
-func ParseExchangeInstruction(instruction string) (posA int, posB int) {
-	if _, err := fmt.Sscanf(instruction, "x%d/%d", &posA, &posB); err != nil {
-		log.Fatal(err)
-	}
-	return
-}
-
-func ParsePartnerInstruction(instruction string) (a byte, b byte) {
-	a = instruction[1]
-	b = instruction[3]
-	return
 }
