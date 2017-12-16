@@ -2,11 +2,13 @@ package dance
 
 type Dancefloor struct {
 	Positions []byte
+	history   []string
 }
 
 func NewDancefloor(positions int) *Dancefloor {
 	d := new(Dancefloor)
 	d.Positions = make([]byte, 0, positions)
+	d.history = make([]string, 0)
 
 	start := byte('a')
 	last := byte(int(start) + positions)
@@ -31,6 +33,20 @@ func (d *Dancefloor) Dance(instructions []string) {
 			d.Partner(a, b)
 		}
 	}
+
+	d.history = append(d.history, string(d.Positions))
+}
+
+func (d *Dancefloor) IsRepeat() int {
+	position := string(d.Positions)
+
+	for i, p := range d.history {
+		if p == position {
+			return i
+		}
+	}
+
+	return -1
 }
 
 func (d *Dancefloor) Spin(count int) {

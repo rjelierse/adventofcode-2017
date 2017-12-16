@@ -42,9 +42,15 @@ func (c *command) Execute(ctx context.Context, f *flag.FlagSet, args ...interfac
 
 	for i := 0; i < c.rounds; i++ {
 		floor.Dance(instructions)
+		if iter := floor.IsRepeat(); iter > -1 && iter != i {
+			round := (c.rounds % i) - 1
+			fmt.Printf("Round %d is a repeat of round %d: %s\n", i + 1, iter + 1, floor.history[iter])
+			fmt.Printf("Round %d is a repeat of round %d: %s\n", c.rounds, round + 1, floor.history[round])
+			return subcommands.ExitSuccess
+		}
 	}
 
-	fmt.Println("Dancefloor positions:", string(floor.Positions))
+	fmt.Printf("Dancefloor positions: %s\n", string(floor.Positions))
 
 	return subcommands.ExitSuccess
 }
