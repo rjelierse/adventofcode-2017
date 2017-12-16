@@ -5,7 +5,7 @@ type PartnerInstruction struct {
 	PartnerB byte
 }
 
-func (i *PartnerInstruction) Apply(d *Dancefloor) {
+func (i *PartnerInstruction) Apply(d *Floor) {
 	d.Partner(i.PartnerA, i.PartnerB)
 }
 

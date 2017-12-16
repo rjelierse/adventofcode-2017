@@ -9,7 +9,7 @@ type ExchangeInstruction struct {
 	PositionB int
 }
 
-func (i *ExchangeInstruction) Apply(d *Dancefloor) {
+func (i *ExchangeInstruction) Apply(d *Floor) {
 	d.Exchange(i.PositionA, i.PositionB)
 }
 

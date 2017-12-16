@@ -8,7 +8,7 @@ type SpinInstruction struct {
 	Count int
 }
 
-func (i *SpinInstruction) Apply(d *Dancefloor) {
+func (i *SpinInstruction) Apply(d *Floor) {
 	d.Spin(i.Count)
 }
 
