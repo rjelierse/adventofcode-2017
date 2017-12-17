@@ -31,8 +31,16 @@ func (c *command) Execute(ctx context.Context, f *flag.FlagSet, args ...interfac
 	ring := NewRing()
 	ring.Run(c.steps, 2017)
 	fmt.Println("Value after 2017, 2017 rounds:", ring.ValueAfter(2017))
-	ring.Run(c.steps, 50000000)
-	fmt.Println("Value after 0, 50000000 rounds:", ring.ValueAfter(0))
+
+	index := 0
+	result := 0
+	for value := 1; value < 50e6; value++ {
+		index = (index + c.steps + 1) % value
+		if index == 0 {
+			result = value
+		}
+	}
+	fmt.Println("Value after 0, 50000000 rounds:", result)
 	return subcommands.ExitSuccess
 }
 
