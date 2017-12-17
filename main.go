@@ -21,6 +21,7 @@ import (
 	"github.com/rjelierse/adventofcode-2017/15"
 	"github.com/rjelierse/adventofcode-2017/16"
 	"os"
+	"github.com/rjelierse/adventofcode-2017/17"
 )
 
 func main() {
@@ -45,6 +46,7 @@ func main() {
 	subcommands.Register(defrag.Command(), "Advent of Code 2017")
 	subcommands.Register(generator.Command(), "Advent of Code 2017")
 	subcommands.Register(dance.Command(), "Advent of Code 2017")
+	subcommands.Register(spinlock.Command(), "Advent of Code 2017")
 
 	flag.Parse()
 	ctx := context.Background()
