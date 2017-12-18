@@ -15,12 +15,12 @@ func SoundBoard(instructions []string) (int, error) {
 		if cmd == "rcv" && registers[addr] > 0 {
 			return lastPlayed, nil
 		}
-		if cmd == "rcv" && registers[addr] <= 0 {
+		if cmd == "rcv" && registers[addr] != 0 {
 			i++
 			continue
 		}
 
-		if cmd == "jgz" && registers[addr] != 0 {
+		if cmd == "jgz" && registers[addr] > 0 {
 			value, err := strconv.Atoi(instructions[i][6:])
 			if err != nil {
 				return 0, err

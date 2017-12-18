@@ -39,6 +39,8 @@ func (c *command) Execute(ctx context.Context, f *flag.FlagSet, args ...interfac
 	instructions := strings.Split(strings.TrimSpace(string(input)), "\n")
 	// Part 1
 	fmt.Println(SoundBoard(instructions))
+	// Part 2
+	fmt.Println(RunQueue(instructions))
 	return subcommands.ExitSuccess
 }
 
