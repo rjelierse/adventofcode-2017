@@ -1,13 +1,13 @@
-package sound
+package duet
 
 import (
-	"log"
 	"strconv"
 	"strings"
 	"time"
+	"errors"
 )
 
-func Run(pid int, instructions []string, out, in chan int) (sent int) {
+func program(pid int, instructions []string, out, in chan int) (sent int, err error) {
 	registers := map[string]int{
 		"p": pid,
 	}
@@ -33,17 +33,17 @@ func Run(pid int, instructions []string, out, in chan int) (sent int) {
 				continue
 			}
 		case "rcv":
-			addr := fields[1]
 			select {
-			case registers[addr] = <-in:
-			case <-time.After(1 * time.Second):
+			case val := <-in:
+				registers[fields[1]] = val
+			case <-time.After(500 * time.Millisecond):
 				return
 			}
 		case "snd":
 			select {
 			case out <- get(fields[1]):
 				sent++
-			case <-time.After(1 * time.Second):
+			case <-time.After(500 * time.Millisecond):
 				return
 			}
 		case "set":
@@ -55,7 +55,8 @@ func Run(pid int, instructions []string, out, in chan int) (sent int) {
 		case "mod":
 			registers[fields[1]] %= get(fields[2])
 		default:
-			log.Fatal("Unknown command:", fields[0])
+			err = errors.New("Unknown command:" + fields[0])
+			return
 		}
 		pos++
 	}
@@ -63,9 +64,9 @@ func Run(pid int, instructions []string, out, in chan int) (sent int) {
 	return
 }
 
-func RunQueue(instructions []string) int {
+func Run(instructions []string) (int, error) {
 	c01 := make(chan int, 10000)
 	c10 := make(chan int, 10000)
-	go Run(0, instructions, c01, c10)
-	return Run(1, instructions, c10, c01)
+	go program(0, instructions, c01, c10)
+	return program(1, instructions, c10, c01)
 }

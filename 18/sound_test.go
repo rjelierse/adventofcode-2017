@@ -1,4 +1,4 @@
-package sound
+package duet
 
 import (
 	"log"
@@ -18,7 +18,7 @@ func TestSoundBoard(t *testing.T) {
 		"set a 1",
 		"jgz a -2",
 	}
-	lastPlayed, err := SoundBoard(instructions)
+	lastPlayed, err := Sounds(instructions)
 	if err != nil {
 		log.Fatal("Cannot calculate last played:", err)
 	}

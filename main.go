@@ -48,7 +48,7 @@ func main() {
 	subcommands.Register(generator.Command(), "Advent of Code 2017")
 	subcommands.Register(dance.Command(), "Advent of Code 2017")
 	subcommands.Register(spinlock.Command(), "Advent of Code 2017")
-	subcommands.Register(sound.Command(), "Advent of Code 2017")
+	subcommands.Register(duet.Command(), "Advent of Code 2017")
 
 	flag.Parse()
 	ctx := context.Background()

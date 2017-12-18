@@ -1,62 +1,53 @@
-package sound
+package duet
 
 import (
 	"errors"
 	"strconv"
+	"strings"
 )
 
-func SoundBoard(instructions []string) (int, error) {
-	var lastPlayed int
+func Sounds(instructions []string) (lastPlayed int, err error) {
 	registers := make(map[string]int)
-	for i := 0; i >= 0 && i < len(instructions); {
-		cmd := instructions[i][0:3]
-		addr := instructions[i][4:5]
 
-		if cmd == "rcv" && registers[addr] > 0 {
-			return lastPlayed, nil
-		}
-		if cmd == "rcv" && registers[addr] != 0 {
-			i++
-			continue
-		}
-
-		if cmd == "jgz" && registers[addr] > 0 {
-			value, err := strconv.Atoi(instructions[i][6:])
+	get := func(s string) int {
+		if strings.IndexAny(s, "0123456789") != -1 {
+			v, err := strconv.Atoi(s)
 			if err != nil {
-				return 0, err
+				panic(err)
 			}
-			i = i + value
-			continue
+			return v
 		}
-		if cmd == "jgz" && registers[addr] == 0 {
-			i++
-			continue
-		}
+		return registers[s]
+	}
 
-		if cmd == "snd" {
-			lastPlayed = registers[addr]
-			i++
-			continue
-		}
-
-		value, err := strconv.Atoi(instructions[i][6:])
-		if err != nil {
-			addr := instructions[i][6:7]
-			value = registers[addr]
-		}
-
-		switch cmd {
+	var pos int
+	for pos >= 0 && pos < len(instructions) {
+		fields := strings.Fields(instructions[pos])
+		switch fields[0] {
+		case "jgz":
+			if get(fields[1]) > 0 {
+				pos += get(fields[2])
+				continue
+			}
+		case "rcv":
+			if get(fields[1]) != 0 {
+				return
+			}
+		case "snd":
+			lastPlayed = get(fields[1])
 		case "set":
-			registers[addr] = value
+			registers[fields[1]] = get(fields[2])
 		case "add":
-			registers[addr] = registers[addr] + value
+			registers[fields[1]] += get(fields[2])
 		case "mul":
-			registers[addr] = registers[addr] * value
+			registers[fields[1]] *= get(fields[2])
 		case "mod":
-			registers[addr] = registers[addr] % value
+			registers[fields[1]] %= get(fields[2])
+		default:
+			err = errors.New("Unknown command:" + fields[0])
+			return
 		}
-
-		i++
+		pos++
 	}
 	return 0, errors.New("program terminated without recovery")
 }

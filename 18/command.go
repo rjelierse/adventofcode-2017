@@ -1,4 +1,4 @@
-package sound
+package duet
 
 import (
 	"flag"
@@ -38,9 +38,11 @@ func (c *command) Execute(ctx context.Context, f *flag.FlagSet, args ...interfac
 	}
 	instructions := strings.Split(strings.TrimSpace(string(input)), "\n")
 	// Part 1
-	fmt.Println(SoundBoard(instructions))
+	fmt.Print("Part1: ")
+	fmt.Println(Sounds(instructions))
 	// Part 2
-	fmt.Println(RunQueue(instructions))
+	fmt.Print("Part2: ")
+	fmt.Println(Run(instructions))
 	return subcommands.ExitSuccess
 }
 

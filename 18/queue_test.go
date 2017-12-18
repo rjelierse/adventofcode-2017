@@ -1,4 +1,4 @@
-package sound
+package duet
 
 import "testing"
 
@@ -12,7 +12,7 @@ func TestRunQueue(t *testing.T) {
 		"rcv c",
 		"rcv d",
 	}
-	sent := RunQueue(instructions)
+	sent := Run(instructions)
 	if sent != 3 {
 		t.Error("Unexpected number of sent values:", sent)
 	}
