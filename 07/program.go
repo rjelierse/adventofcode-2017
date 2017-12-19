@@ -57,7 +57,7 @@ func (program *Program) Weight() (weight int, err error) {
 	}
 
 	if imbalance != nil {
-		err = WeightError{Program:imbalance, Difference: outlier - normal}
+		err = WeightError{Program: imbalance, Difference: outlier - normal}
 	}
 
 	return weight, err

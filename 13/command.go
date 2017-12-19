@@ -1,13 +1,13 @@
 package day13
 
 import (
-	"flag"
-	"github.com/google/subcommands"
-	"context"
-	"io/ioutil"
-	"fmt"
-	"os"
 	"bytes"
+	"context"
+	"flag"
+	"fmt"
+	"github.com/google/subcommands"
+	"io/ioutil"
+	"os"
 )
 
 type command struct {
@@ -51,7 +51,7 @@ func (c *command) Execute(ctx context.Context, f *flag.FlagSet, args ...interfac
 
 	fmt.Println("Penalty when traversing:", firewall.Traverse(0))
 
-	for delay := 0;; delay++ {
+	for delay := 0; ; delay++ {
 		penalty := firewall.Traverse(delay)
 
 		if penalty == 0 {

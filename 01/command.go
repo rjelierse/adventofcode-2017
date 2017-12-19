@@ -42,9 +42,9 @@ func (c *command) Execute(ctx context.Context, f *flag.FlagSet, args ...interfac
 	sum2 := calculateSum(input, len(input)/2)
 	atPart2 := time.Now()
 
-	fmt.Printf("Captchas generated (input parsed in %dµs).\n", atInput.Sub(start).Nanoseconds() / 1000)
-	fmt.Printf("Part 1: %d (generated in %dµs)\n", sum1, atPart1.Sub(atInput).Nanoseconds() / 1000)
-	fmt.Printf("Part 2: %d (generated in %dµs)\n", sum2, atPart2.Sub(atPart1).Nanoseconds() / 1000)
+	fmt.Printf("Captchas generated (input parsed in %dµs).\n", atInput.Sub(start).Nanoseconds()/1000)
+	fmt.Printf("Part 1: %d (generated in %dµs)\n", sum1, atPart1.Sub(atInput).Nanoseconds()/1000)
+	fmt.Printf("Part 2: %d (generated in %dµs)\n", sum2, atPart2.Sub(atPart1).Nanoseconds()/1000)
 
 	return subcommands.ExitSuccess
 }

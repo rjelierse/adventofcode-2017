@@ -75,7 +75,7 @@ const hashingGroupSize = 16
 
 // DenseHash takes the sparse hash and transforms it by XORing each group of 16 bytes
 func (k *Knot) DenseHash() []int {
-	hash := make([]int, k.length / hashingGroupSize)
+	hash := make([]int, k.length/hashingGroupSize)
 
 	for i := 0; i < hashingGroupSize; i++ {
 		start := i * hashingGroupSize

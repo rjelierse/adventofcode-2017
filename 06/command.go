@@ -1,13 +1,13 @@
 package day06
 
 import (
-	"github.com/google/subcommands"
-	"flag"
 	"context"
-	"io/ioutil"
-	"strings"
-	"strconv"
+	"flag"
 	"fmt"
+	"github.com/google/subcommands"
+	"io/ioutil"
+	"strconv"
+	"strings"
 )
 
 type command struct {
@@ -46,7 +46,7 @@ func (c *command) Execute(ctx context.Context, f *flag.FlagSet, args ...interfac
 		seen, first = bank.ConfigurationSeenBefore()
 	}
 
-	fmt.Println("Steps", step, "length", step - first)
+	fmt.Println("Steps", step, "length", step-first)
 
 	return subcommands.ExitSuccess
 }

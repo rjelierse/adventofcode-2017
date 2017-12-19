@@ -12,7 +12,7 @@ func Position(t int, r int) int {
 	mod := t % r
 
 	// direction is down if division is even
-	if div % 2 == 0 {
+	if div%2 == 0 {
 		return mod
 	} else {
 		return r - mod

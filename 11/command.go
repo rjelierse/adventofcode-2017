@@ -1,11 +1,11 @@
 package day11
 
 import (
-	"github.com/google/subcommands"
-	"flag"
 	"context"
-	"io/ioutil"
+	"flag"
 	"fmt"
+	"github.com/google/subcommands"
+	"io/ioutil"
 	"os"
 	"strings"
 )

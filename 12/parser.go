@@ -1,8 +1,8 @@
 package day12
 
 import (
-	"strings"
 	"strconv"
+	"strings"
 )
 
 type Tree struct {

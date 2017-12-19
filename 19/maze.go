@@ -6,24 +6,24 @@ type Position [2]int
 type Direction [2]int
 
 var (
-	DirUp = Direction{0, -1}
-	DirDown = Direction{0, 1}
-	DirLeft = Direction{-1, 0}
+	DirUp    = Direction{0, -1}
+	DirDown  = Direction{0, 1}
+	DirLeft  = Direction{-1, 0}
 	DirRight = Direction{1, 0}
-	DirNone = Direction{0, 0}
+	DirNone  = Direction{0, 0}
 )
 
 const (
 	NodeHorizontal = '-'
-	NodeVertical = '|'
-	NodeTurn = '+'
-	NodeVoid = ' '
+	NodeVertical   = '|'
+	NodeTurn       = '+'
+	NodeVoid       = ' '
 )
 
 func (p Position) Move(d Direction) Position {
 	x, y := p[0], p[1]
 	dx, dy := d[0], d[1]
-	return Position{x+dx,y+dy}
+	return Position{x + dx, y + dy}
 }
 
 func Travel(grid [][]byte) (sequence []byte, steps int) {
@@ -40,10 +40,10 @@ func Travel(grid [][]byte) (sequence []byte, steps int) {
 
 	next := func(p Position, d Direction) Position {
 		p = p.Move(d)
-		if p[0] < 0 || p[0] > (width - 1) {
+		if p[0] < 0 || p[0] > (width-1) {
 			panic("x out of bounds")
 		}
-		if p[1] < 0 || p[1] > (height - 1) {
+		if p[1] < 0 || p[1] > (height-1) {
 			panic("y out of bounds")
 		}
 		return p

@@ -12,7 +12,6 @@ var lines = []string{
 	"6 <-> 4, 5",
 }
 
-
 func TestParseGroup(t *testing.T) {
 	g, err := ParseGroup(lines[2])
 	if err != nil {

@@ -1,6 +1,5 @@
 package day06
 
-
 type Bank struct {
 	Configuration          Configuration
 	NumSlots               int

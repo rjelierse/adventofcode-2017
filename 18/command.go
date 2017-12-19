@@ -1,11 +1,11 @@
 package day18
 
 import (
-	"flag"
-	"github.com/google/subcommands"
 	"context"
-	"io/ioutil"
+	"flag"
 	"fmt"
+	"github.com/google/subcommands"
+	"io/ioutil"
 	"os"
 	"strings"
 )
@@ -49,5 +49,3 @@ func (c *command) Execute(ctx context.Context, f *flag.FlagSet, args ...interfac
 func Command() subcommands.Command {
 	return &command{}
 }
-
-

@@ -1,10 +1,10 @@
 package day18
 
 import (
+	"errors"
 	"strconv"
 	"strings"
 	"time"
-	"errors"
 )
 
 func program(pid int, instructions []string, out, in chan int) (sent int, err error) {

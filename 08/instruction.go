@@ -13,7 +13,6 @@ type Instruction struct {
 	Value    int
 }
 
-
 func (i *Instruction) Apply() {
 	value := GetValue(i.Register)
 

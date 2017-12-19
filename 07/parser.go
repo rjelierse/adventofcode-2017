@@ -1,8 +1,8 @@
 package day07
 
 import (
-	"strings"
 	"strconv"
+	"strings"
 )
 
 func ParseLine(line string) (program *Program, err error) {

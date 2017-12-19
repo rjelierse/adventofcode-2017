@@ -1,12 +1,12 @@
 package day07
 
 import (
-	"flag"
-	"github.com/google/subcommands"
 	"context"
+	"flag"
+	"fmt"
+	"github.com/google/subcommands"
 	"io/ioutil"
 	"strings"
-	"fmt"
 )
 
 type command struct {

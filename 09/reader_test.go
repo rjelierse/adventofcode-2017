@@ -4,7 +4,7 @@ import "testing"
 
 type test struct {
 	Stream string
-	Score int
+	Score  int
 }
 
 var tests = []test{

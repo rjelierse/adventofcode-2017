@@ -1,13 +1,13 @@
 package day10
 
 import (
+	"bytes"
 	"context"
 	"flag"
 	"fmt"
 	"github.com/google/subcommands"
 	"io/ioutil"
 	"os"
-	"bytes"
 )
 
 type command struct {

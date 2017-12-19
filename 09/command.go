@@ -3,9 +3,9 @@ package day09
 import (
 	"context"
 	"flag"
+	"fmt"
 	"github.com/google/subcommands"
 	"io/ioutil"
-	"fmt"
 )
 
 type command struct {

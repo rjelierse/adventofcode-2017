@@ -1,10 +1,10 @@
 package day17
 
 import (
-	"flag"
-	"github.com/google/subcommands"
 	"context"
+	"flag"
 	"fmt"
+	"github.com/google/subcommands"
 )
 
 type command struct {
@@ -47,4 +47,3 @@ func (c *command) Execute(ctx context.Context, f *flag.FlagSet, args ...interfac
 func Command() subcommands.Command {
 	return &command{}
 }
-

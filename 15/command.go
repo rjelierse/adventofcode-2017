@@ -3,14 +3,14 @@ package day15
 import (
 	"context"
 	"flag"
-	"github.com/google/subcommands"
 	"fmt"
+	"github.com/google/subcommands"
 )
 
 type command struct {
-	valueA int
-	valueB int
-	rounds int
+	valueA       int
+	valueB       int
+	rounds       int
 	shouldDivide bool
 }
 

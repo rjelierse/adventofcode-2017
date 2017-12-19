@@ -3,10 +3,10 @@ package day08
 import (
 	"context"
 	"flag"
+	"fmt"
 	"github.com/google/subcommands"
 	"io/ioutil"
 	"strings"
-	"fmt"
 )
 
 type Program struct {

@@ -16,7 +16,7 @@ func (g *Generator) Next(shouldDivide bool) int {
 	v := g.nextValue()
 
 	if shouldDivide {
-		for v % g.Divider != 0 {
+		for v%g.Divider != 0 {
 			v = g.nextValue()
 		}
 	}

@@ -1,13 +1,13 @@
 package day19
 
 import (
-	"flag"
-	"github.com/google/subcommands"
-	"context"
-	"io/ioutil"
-	"fmt"
-	"os"
 	"bytes"
+	"context"
+	"flag"
+	"fmt"
+	"github.com/google/subcommands"
+	"io/ioutil"
+	"os"
 )
 
 type command struct {

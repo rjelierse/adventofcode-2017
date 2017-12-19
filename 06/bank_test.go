@@ -26,12 +26,12 @@ func TestNewBank(t *testing.T) {
 		bank.Redistribute()
 
 		if !bank.Configuration.Is(step) {
-			t.Error("At step", i + 1, "expected configuration", step, "received", bank.Configuration, "instead.")
+			t.Error("At step", i+1, "expected configuration", step, "received", bank.Configuration, "instead.")
 		}
 
 		seen, _ := bank.ConfigurationSeenBefore()
 		if seen && i != 4 {
-			t.Error("Expected configuration to have been seend before at step 5, got", i + 1, "instead.")
+			t.Error("Expected configuration to have been seend before at step 5, got", i+1, "instead.")
 		}
 	}
 }

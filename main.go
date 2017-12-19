@@ -20,10 +20,10 @@ import (
 	"github.com/rjelierse/adventofcode-2017/14"
 	"github.com/rjelierse/adventofcode-2017/15"
 	"github.com/rjelierse/adventofcode-2017/16"
-	"os"
 	"github.com/rjelierse/adventofcode-2017/17"
 	"github.com/rjelierse/adventofcode-2017/18"
 	"github.com/rjelierse/adventofcode-2017/19"
+	"os"
 )
 
 func main() {

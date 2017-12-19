@@ -3,9 +3,9 @@ package day12
 import (
 	"context"
 	"flag"
+	"fmt"
 	"github.com/google/subcommands"
 	"io/ioutil"
-	"fmt"
 	"os"
 	"strings"
 )
