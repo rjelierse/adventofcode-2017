@@ -23,6 +23,12 @@ import (
 	"github.com/rjelierse/adventofcode-2017/17"
 	"github.com/rjelierse/adventofcode-2017/18"
 	"github.com/rjelierse/adventofcode-2017/19"
+	"github.com/rjelierse/adventofcode-2017/20"
+	"github.com/rjelierse/adventofcode-2017/21"
+	"github.com/rjelierse/adventofcode-2017/22"
+	"github.com/rjelierse/adventofcode-2017/23"
+	"github.com/rjelierse/adventofcode-2017/24"
+	"github.com/rjelierse/adventofcode-2017/25"
 	"os"
 )
 
@@ -51,6 +57,12 @@ func main() {
 	subcommands.Register(day17.Command(), "Advent of Code 2017")
 	subcommands.Register(day18.Command(), "Advent of Code 2017")
 	subcommands.Register(day19.Command(), "Advent of Code 2017")
+	subcommands.Register(day20.Command(), "Advent of Code 2017")
+	subcommands.Register(day21.Command(), "Advent of Code 2017")
+	subcommands.Register(day22.Command(), "Advent of Code 2017")
+	subcommands.Register(day23.Command(), "Advent of Code 2017")
+	subcommands.Register(day24.Command(), "Advent of Code 2017")
+	subcommands.Register(day25.Command(), "Advent of Code 2017")
 
 	flag.Parse()
 	ctx := context.Background()
