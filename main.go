@@ -23,6 +23,7 @@ import (
 	"os"
 	"github.com/rjelierse/adventofcode-2017/17"
 	"github.com/rjelierse/adventofcode-2017/18"
+	"github.com/rjelierse/adventofcode-2017/19"
 )
 
 func main() {
@@ -49,6 +50,7 @@ func main() {
 	subcommands.Register(dance.Command(), "Advent of Code 2017")
 	subcommands.Register(spinlock.Command(), "Advent of Code 2017")
 	subcommands.Register(duet.Command(), "Advent of Code 2017")
+	subcommands.Register(day19.Command(), "Advent of Code 2017")
 
 	flag.Parse()
 	ctx := context.Background()
