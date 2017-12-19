@@ -1,4 +1,4 @@
-package pipes
+package day12
 
 import "testing"
 

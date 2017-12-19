@@ -1,4 +1,4 @@
-package captcha
+package day01
 
 import (
 	"io/ioutil"

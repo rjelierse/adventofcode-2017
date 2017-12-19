@@ -1,4 +1,4 @@
-package registers
+package day08
 
 const (
 	OperatorIncrease Operator = "inc"

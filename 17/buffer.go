@@ -1,4 +1,4 @@
-package spinlock
+package day17
 
 type Ring struct {
 	buffer   []int

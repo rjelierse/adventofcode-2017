@@ -1,4 +1,4 @@
-package spiral
+package day03
 
 import (
 	"math"

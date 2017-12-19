@@ -1,4 +1,4 @@
-package captcha
+package day01
 
 const AsciiOffset = 48
 

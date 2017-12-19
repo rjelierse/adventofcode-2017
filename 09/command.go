@@ -1,4 +1,4 @@
-package garbage
+package day09
 
 import (
 	"context"

@@ -1,4 +1,4 @@
-package defrag
+package day14
 
 import (
 	"fmt"
@@ -24,8 +24,8 @@ func NewGrid(key string) *Grid {
 
 	for i := 0; i < gridSize; i++ {
 		input := fmt.Sprintf("%s-%d", key, i)
-		lengths := knot.Length([]byte(input))
-		for j, bits := range knot.Hash(lengths) {
+		lengths := day10.Length([]byte(input))
+		for j, bits := range day10.Hash(lengths) {
 			upper := bits / divider
 			lower := bits % divider
 

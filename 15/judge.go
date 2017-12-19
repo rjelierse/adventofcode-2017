@@ -1,4 +1,4 @@
-package generator
+package day15
 
 const startA = 65
 const multiplierA = 16807

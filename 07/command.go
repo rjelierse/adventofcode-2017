@@ -1,4 +1,4 @@
-package tower
+package day07
 
 import (
 	"flag"

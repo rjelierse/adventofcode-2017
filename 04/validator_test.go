@@ -1,4 +1,4 @@
-package passphrase
+package day04
 
 import (
 	"testing"

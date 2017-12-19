@@ -1,4 +1,4 @@
-package firewall
+package day13
 
 type Firewall struct {
 	layers map[int]int

@@ -1,4 +1,4 @@
-package generator
+package day15
 
 import "testing"
 

@@ -1,4 +1,4 @@
-package trampoline
+package day05
 
 func CalculateSteps(input []int) (steps int) {
 	var position int

@@ -1,4 +1,4 @@
-package knot
+package day10
 
 import (
 	"context"

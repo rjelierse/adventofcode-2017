@@ -1,4 +1,4 @@
-package dance
+package day16
 
 type History struct {
 	positions []string

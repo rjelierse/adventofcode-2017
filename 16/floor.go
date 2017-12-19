@@ -1,4 +1,4 @@
-package dance
+package day16
 
 type Floor struct {
 	positions []byte

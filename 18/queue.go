@@ -1,4 +1,4 @@
-package duet
+package day18
 
 import (
 	"strconv"

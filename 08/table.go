@@ -1,4 +1,4 @@
-package registers
+package day08
 
 var table = make(map[string]int)
 

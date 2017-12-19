@@ -1,4 +1,4 @@
-package garbage
+package day09
 
 // ReadStream parses a stream and returns the total group score
 func ReadStream(input string) (score int, garbage int) {

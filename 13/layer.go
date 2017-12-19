@@ -1,4 +1,4 @@
-package firewall
+package day13
 
 // Position is function of time and range
 func Position(t int, r int) int {

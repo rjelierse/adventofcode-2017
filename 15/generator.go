@@ -1,4 +1,4 @@
-package generator
+package day15
 
 type Generator struct {
 	Value      int

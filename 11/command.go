@@ -1,4 +1,4 @@
-package hexes
+package day11
 
 import (
 	"github.com/google/subcommands"

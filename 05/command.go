@@ -1,4 +1,4 @@
-package trampoline
+package day05
 
 import (
 	"context"

@@ -1,4 +1,4 @@
-package banks
+package day06
 
 import "testing"
 

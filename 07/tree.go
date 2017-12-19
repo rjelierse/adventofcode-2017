@@ -1,4 +1,4 @@
-package tower
+package day07
 
 // BuildTree constructs the tree of programs and return the root node
 func BuildTree(lines []string) *Program {
