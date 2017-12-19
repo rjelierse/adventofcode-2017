@@ -13,9 +13,13 @@ var maze = [][]byte{
 }
 
 func TestTravel(t *testing.T) {
-	result := Travel(maze)
+	sequence, steps := Travel(maze)
 
-	if string(result) != "ABCDEF" {
-		t.Error("Unexpected result:", string(result))
+	if string(sequence) != "ABCDEF" {
+		t.Error("Unexpected sequence:", string(sequence))
+	}
+
+	if steps != 38 {
+		t.Error("Unexpected number of steps:", steps)
 	}
 }
