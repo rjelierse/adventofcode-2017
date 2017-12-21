@@ -3,15 +3,16 @@ package day20
 import (
 	"context"
 	"flag"
+	"fmt"
 	"github.com/google/subcommands"
 	"io/ioutil"
-	"fmt"
 	"os"
 	"strings"
 )
 
-type command struct{
-	path string
+type command struct {
+	path   string
+	rounds int
 }
 
 func (c *command) Name() string {
@@ -28,6 +29,7 @@ func (c *command) Usage() string {
 
 func (c *command) SetFlags(f *flag.FlagSet) {
 	f.StringVar(&c.path, "input", "", "")
+	f.IntVar(&c.rounds, "rounds", 500, "")
 }
 
 func (c *command) Execute(ctx context.Context, f *flag.FlagSet, args ...interface{}) subcommands.ExitStatus {
@@ -43,11 +45,7 @@ func (c *command) Execute(ctx context.Context, f *flag.FlagSet, args ...interfac
 		return subcommands.ExitFailure
 	}
 
-	for i := 0; i < 500; i++ {
-		buffer.Sync()
-	}
-
-	fmt.Println("Closest point:", buffer.particles[0].Id)
+	fmt.Println("Closest point:", buffer.Closest(c.rounds).Id)
 
 	return subcommands.ExitSuccess
 }

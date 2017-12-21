@@ -21,14 +21,10 @@ func BufferFromInput(input []string) (*Buffer, error) {
 	return b, nil
 }
 
-// Sync updates the particle positions and returns the particle closest to <0,0,0>
-func (b *Buffer) Sync() *Particle {
-	for _, p := range b.particles {
-		p.Update()
-	}
-
+// Closest orders the particles slice by distance at time t and returns the particle closest to <0,0,0>
+func (b *Buffer) Closest(t int) *Particle {
 	sort.Slice(b.particles, func(i, j int) bool {
-		return b.particles[i].Distance() < b.particles[j].Distance()
+		return b.particles[i].CalcPosition(t).Sum() < b.particles[j].CalcPosition(t).Sum()
 	})
 
 	return b.particles[0]

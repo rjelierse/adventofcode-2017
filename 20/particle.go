@@ -21,11 +21,10 @@ func ParticleFromInput(id int, input string) (*Particle, error) {
 	return &Particle{id, p, v, a}, nil
 }
 
-func (p *Particle) Distance() int {
-	return p.Position.Sum()
-}
-
-func (p *Particle) Update() {
-	p.Velocity = p.Velocity.Add(p.Acceleration)
-	p.Position = p.Position.Add(p.Velocity)
+func (p *Particle) CalcPosition(t int) Vector {
+	return Vector{
+		p.Position.X + (p.Velocity.X * t) + (p.Acceleration.X * t * t),
+		p.Position.Y + (p.Velocity.Y * t) + (p.Acceleration.Y * t * t),
+		p.Position.Z + (p.Velocity.Z * t) + (p.Acceleration.Z * t * t),
+	}
 }
