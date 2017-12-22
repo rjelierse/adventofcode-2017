@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"os"
 	"strings"
+	"sort"
 )
 
 type command struct {
@@ -39,15 +40,60 @@ func (c *command) Execute(ctx context.Context, f *flag.FlagSet, args ...interfac
 		return subcommands.ExitFailure
 	}
 
-	buffer, err := BufferFromInput(strings.Split(strings.TrimSpace(string(data)), "\n"))
-	if err != nil {
-		fmt.Fprintln(os.Stderr, "Failed to parse input:", err)
+	input := strings.Split(strings.TrimSpace(string(data)), "\n")
+	if err := c.part1(input); err != nil {
+		fmt.Fprintln(os.Stderr, "Failed to run part 1:", err)
 		return subcommands.ExitFailure
 	}
 
-	fmt.Println("Closest point:", buffer.Closest(c.rounds).Id)
+	if err := c.part2(input); err != nil {
+		fmt.Fprintln(os.Stderr, "Failed to run part 2:", err)
+		return subcommands.ExitFailure
+	}
 
 	return subcommands.ExitSuccess
+}
+
+func (c *command) part1(input []string) error {
+	buffer, err := BufferFromInput(input)
+	if err != nil {
+		return err
+	}
+
+	fmt.Println("Closest point:", buffer.Closest(c.rounds).Id)
+	return nil
+}
+
+func (c *command) part2(input []string) error {
+	buffer, err := BufferFromInput(input)
+	if err != nil {
+		return err
+	}
+
+	sort.Slice(buffer.particles, func (i, j int) bool {
+		a, b := buffer.particles[i], buffer.particles[j]
+
+		switch {
+		case a.Acceleration.Sum() < b.Acceleration.Sum():
+			return true
+		case a.Velocity.Sum() < b.Velocity.Sum():
+			return true
+		case a.Position.Sum() < b.Position.Sum():
+			return true
+		default:
+			return false
+		}
+	})
+
+	for t := 0; buffer.Run(t); t++ {
+		if t % 1000 == 0 {
+			fmt.Printf("[%05d] collisions: %d\n", t, buffer.Count(true))
+		}
+	}
+
+	fmt.Println("Particles remaining:", buffer.Count(false))
+
+	return nil
 }
 
 func Command() subcommands.Command {

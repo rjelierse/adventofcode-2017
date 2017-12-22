@@ -1,11 +1,12 @@
 package day20
 
 import (
+	"fmt"
 	"sort"
 )
 
 type Buffer struct {
-	particles []*Particle
+	particles  []*Particle
 }
 
 func BufferFromInput(input []string) (*Buffer, error) {
@@ -28,4 +29,32 @@ func (b *Buffer) Closest(t int) *Particle {
 	})
 
 	return b.particles[0]
+}
+
+func (b *Buffer) Run(t int) bool {
+	for offset, a := range b.particles {
+		if a.Collided {
+			continue
+		}
+		for _, b := range b.particles[offset+1:] {
+			if b.Collided {
+				continue
+			}
+			if a.CalcPosition(t) == b.CalcPosition(t) {
+				fmt.Printf("[%05d] Collision between %d and %d\n", t, a.Id, b.Id)
+				a.Collided = true
+				b.Collided = true
+			}
+		}
+	}
+	return true
+}
+
+func (b *Buffer) Count(collided bool) (result int) {
+	for _, p := range b.particles {
+		if p.Collided == collided {
+			result++
+		}
+	}
+	return
 }

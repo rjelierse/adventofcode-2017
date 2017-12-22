@@ -9,6 +9,7 @@ type Particle struct {
 	Position     Vector
 	Velocity     Vector
 	Acceleration Vector
+	Collided     bool
 }
 
 func ParticleFromInput(id int, input string) (*Particle, error) {
@@ -18,7 +19,7 @@ func ParticleFromInput(id int, input string) (*Particle, error) {
 		return nil, err
 	}
 
-	return &Particle{id, p, v, a}, nil
+	return &Particle{id, p, v, a, false}, nil
 }
 
 func (p *Particle) CalcPosition(t int) Vector {
