@@ -13,7 +13,7 @@ var maze = [][]byte{
 }
 
 func TestTravel(t *testing.T) {
-	sequence, steps := Travel(maze)
+	sequence, steps := NewMaze(maze).Travel()
 
 	if string(sequence) != "ABCDEF" {
 		t.Error("Unexpected sequence:", string(sequence))

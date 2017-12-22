@@ -1,4 +1,4 @@
-package day22
+package grid
 
 type Direction int
 

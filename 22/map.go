@@ -2,10 +2,11 @@ package day22
 
 import (
 	"bytes"
+	"github.com/rjelierse/adventofcode-2017/grid"
 )
 
 type Map struct {
-	grid map[Position]State
+	Grid map[grid.Position]State
 }
 
 type State int
@@ -17,17 +18,17 @@ const (
 	StateFlagged
 )
 
-func (m *Map) GetState(p Position) State {
-	return m.grid[p]
+func (m *Map) GetState(p grid.Position) State {
+	return m.Grid[p]
 }
 
-func (m *Map) SetState(p Position, s State) {
-	m.grid[p] = s
+func (m *Map) SetState(p grid.Position, s State) {
+	m.Grid[p] = s
 }
 
 func NewMap(input []byte) *Map {
 	m := new(Map)
-	m.grid = make(map[Position]State)
+	m.Grid = make(map[grid.Position]State)
 
 	lines := bytes.Split(bytes.TrimSpace(input), []byte("\n"))
 	height, width := len(lines), len(lines[0])
@@ -39,12 +40,12 @@ func NewMap(input []byte) *Map {
 		y = yMin + y
 		for x, char := range line {
 			x = xMin + x
-			p := Position{x, y}
+			p := grid.Position{x, y}
 			switch char {
 			case '.':
-				m.grid[p] = StateClean
+				m.Grid[p] = StateClean
 			case '#':
-				m.grid[p] = StateInfected
+				m.Grid[p] = StateInfected
 			default:
 				panic("unknown character")
 			}

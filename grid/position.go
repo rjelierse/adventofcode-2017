@@ -1,4 +1,4 @@
-package day19
+package grid
 
 type Position [2]int
 
@@ -18,13 +18,6 @@ func (p Position) Move(d Direction) Position {
 	}
 }
 
-func (p Position) WithinBounds(width, height int) bool {
-	switch {
-	case p[0] < 0 || p[0] > (width-1):
-		return false
-	case p[1] < 0 || p[1] > (height-1):
-		return false
-	default:
-		return true
-	}
+func (p Position) InBounds(xMin, xMax, yMin, yMax int) bool {
+	return xMin <= p[0] && p[0] <= xMax && yMin <= p[1] && p[1] <= yMax
 }

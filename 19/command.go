@@ -37,8 +37,8 @@ func (c *command) Execute(ctx context.Context, f *flag.FlagSet, args ...interfac
 		return subcommands.ExitFailure
 	}
 
-	grid := bytes.Split(data, []byte("\n"))
-	sequence, steps := Travel(grid)
+	maze := NewMaze(bytes.Split(data, []byte("\n")))
+	sequence, steps := maze.Travel()
 	fmt.Println("Sequence:", string(sequence))
 	fmt.Println("Steps:", steps)
 
